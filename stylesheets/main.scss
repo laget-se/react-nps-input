@@ -1,8 +1,8 @@
-@NPSInput-Value-color:       #f2f5fd;
-@NPSInput-Value-hover-color: #3884ff;
-@NPSInput-Value-size:        32px;
-@NPSInput-Value-padding:     3px;
-@NPSInput-Value-width:       ((@NPSInput-Value-size + 2*@NPSInput-Value-padding)*11);
+$NPSInput-Value-color:       #f2f5fd;
+$NPSInput-Value-hover-color: #3884ff;
+$NPSInput-Value-size:        32px;
+$NPSInput-Value-padding:     3px;
+$NPSInput-Value-width:       (($NPSInput-Value-size + 2*$NPSInput-Value-padding)*11);
 
 .NPSInput {
     position: fixed;
@@ -53,7 +53,7 @@
     }
 
     .NPSScale {
-        width: @NPSInput-Value-width;
+        width: $NPSInput-Value-width;
         margin: 0px auto;
 
         .NPSScale-Values {
@@ -62,11 +62,11 @@
                 display: inline-block;
 
                 div {
-                    background: @NPSInput-Value-color;
-                    width: @NPSInput-Value-size;
-                    height: @NPSInput-Value-size;
-                    line-height: @NPSInput-Value-size;
-                    border-radius: @NPSInput-Value-size;
+                    background: $NPSInput-Value-color;
+                    width: $NPSInput-Value-size;
+                    height: $NPSInput-Value-size;
+                    line-height: $NPSInput-Value-size;
+                    border-radius: $NPSInput-Value-size;
                     cursor: pointer;
                     transition: 0.15s ease all;
                     color: #999;
@@ -74,7 +74,7 @@
 
                 &.selected {
                     div {
-                        background: @NPSInput-Value-hover-color;
+                        background: $NPSInput-Value-hover-color;
                         color: #fff;
                     }
                 }
