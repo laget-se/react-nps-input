@@ -129,7 +129,7 @@ const NPSInput = React.createClass({
                             <form onSubmit={this.onFormSubmit} className="NPSInput-Form">
                                 <input type="text" placeholder="Tell us a bit more (it's optional)"
                                     ref={input => { this.commentInput = input; }}
-                                    value={commentText || ''} onChange={this.onCommentUpdate} />
+                                    value={commentText || ''} onChange={this.onCommentUpdate} maxLength={255} />
                                 <button onClick={this.onFormSubmit}>Submit</button>
                             </form>
                         ) : null}
