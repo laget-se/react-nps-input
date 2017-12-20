@@ -9,6 +9,7 @@ const NPSScale = require('./NPSScale');
 const NPSInput = React.createClass({
     propTypes: {
         animated:    React.PropTypes.bool,
+        comment:     React.PropTypes.bool,
         service:     React.PropTypes.string,
         onSubmit:    React.PropTypes.func.isRequired,
         onDismissed: React.PropTypes.func.isRequired,
@@ -18,6 +19,7 @@ const NPSInput = React.createClass({
     getDefaultProps() {
         return {
             animated:    true,
+            comment:     false,
             onSubmit:    () => {},
             onDismissed: () => {},
             children:    () => 'Thank you for your feedback!'
@@ -26,21 +28,44 @@ const NPSInput = React.createClass({
 
     getInitialState() {
         return {
+            submitted: false,
             dismissed: false,
-            score: null
+            score: null,
+            commentText: null
         };
     },
-
+    
     /**
      * User clicked on a value.
      */
-    onSubmit(score) {
-        const { onSubmit } = this.props;
-        this.setState({
+    onSelectScore(score) {
+        const { comment } = this.props;
+        if (comment) {
+          this.setState({
             score
-        }, () => {
-            onSubmit({ score });
+          });
+        }
+        else {
+          this.submit(score, null);
+        }
+    },
+    
+    /**
+     * User updated comment text.
+     */
+    onCommentUpdate(event) {
+        this.setState({
+          commentText: event.target.value
         });
+    },
+
+    /**
+     * User submitted a form.
+     */    
+    onFormSubmit(event) {
+      const { score, commentText } = this.state;
+      this.submit(score, commentText);
+      event.preventDefault();
     },
 
     /**
@@ -48,18 +73,29 @@ const NPSInput = React.createClass({
      */
     onDismiss() {
         const { onDismissed } = this.props;
-        const { score } = this.state;
+        const { score, commentText } = this.state;
 
         this.setState({
             dismissed: true
         }, () => {
-            onDismissed({ score });
+            onDismissed({ score, commentText });
         });
+    },
+    
+    submit(score, commentText) {
+        const { onSubmit } = this.props;
+        this.setState({
+            submitted: true,
+            score: score,
+            commentText: commentText
+        }, () => {
+            onSubmit({ score, commentText });
+        }); 
     },
 
     render() {
-        const { animated, service, children } = this.props;
-        const { dismissed, score } = this.state;
+        const { animated, comment, service, children } = this.props;
+        const { submitted, dismissed, score, commentText } = this.state;
 
         const message = service ?
             `How likely are you to recommend ${service} to your friends and colleagues?`
@@ -73,10 +109,11 @@ const NPSInput = React.createClass({
             <div className={classNames('NPSInput', { animated })}>
                 <button className="NPSInput-Close" onClick={this.onDismiss}>✕</button>
 
-                {score ? (
+                {submitted ? (
                     <div className="NPSInput-Inner">
                         {children({
                             score,
+                            commentText,
                             dismiss: this.onDismiss
                         })}
                     </div>
@@ -85,10 +122,15 @@ const NPSInput = React.createClass({
                         <p className="NPSInput-Message">
                             {message}
                         </p>
-                        <NPSScale onSubmit={this.onSubmit} />
+                        <NPSScale selectedValue={score} onSubmit={this.onSelectScore} />
+                        {comment && score ? (
+                          <form onSubmit={this.onFormSubmit}>
+                            <input type="text" placeholder="Tell us a bit more" value={commentText || ''} onChange={this.onCommentUpdate} />
+                            <input type="submit" value="Submit" />
+                          </form>
+                        ) : null}
                     </div>
                 )}
-
             </div>
         );
     }
