@@ -34,7 +34,7 @@ const NPSInput = React.createClass({
             commentText: null
         };
     },
-    
+
     /**
      * User clicked on a value.
      */
@@ -44,14 +44,14 @@ const NPSInput = React.createClass({
             this.setState({
                 score
             }, () => {
-              this.commentInput.focus()  
+                this.commentInput.focus();
             });
         }
         else {
             this.submit(score, null);
         }
     },
-    
+
     /**
      * User updated comment text.
      */
@@ -63,7 +63,7 @@ const NPSInput = React.createClass({
 
     /**
      * User submitted a form.
-     */    
+     */
     onFormSubmit(event) {
         const { score, commentText } = this.state;
         this.submit(score, commentText);
@@ -83,16 +83,16 @@ const NPSInput = React.createClass({
             onDismissed({ score, commentText });
         });
     },
-    
+
     submit(score, commentText) {
         const { onSubmit } = this.props;
         this.setState({
-            submitted: true,
-            score: score,
-            commentText: commentText
+            score,
+            commentText,
+            submitted: true
         }, () => {
             onSubmit({ score, commentText });
-        }); 
+        });
     },
 
     render() {
@@ -128,7 +128,7 @@ const NPSInput = React.createClass({
                         {comment && score ? (
                             <form onSubmit={this.onFormSubmit} className="NPSInput-Form">
                                 <input type="text" placeholder="Tell us a bit more (it's optional)"
-                                    ref={input => { this.commentInput = input; }}
+                                    ref={(input) => { this.commentInput = input; }}
                                     value={commentText || ''} onChange={this.onCommentUpdate} maxLength={255} />
                                 <button onClick={this.onFormSubmit}>Submit</button>
                             </form>

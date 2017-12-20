@@ -54,7 +54,7 @@ const NPSScale = React.createClass({
                         <div
                             key={i}
                             className={classNames('NPSScale-Value', {
-                                selected: (value !== null ? (value >= i) : (selectedValue !== null  && (selectedValue >= i)))
+                                selected: (value !== null ? (value >= i) : (selectedValue !== null && (selectedValue >= i)))
                             })}
                             onMouseEnter={() => this.onMouseEnter(i)}
                             onMouseLeave={() => this.onMouseLeave(i)}
