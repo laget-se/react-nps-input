@@ -41,8 +41,10 @@ const NPSInput = React.createClass({
     onSelectScore(score) {
         const { comment } = this.props;
         if (comment) {
-              this.setState({
+            this.setState({
                 score
+            }, () => {
+              this.commentInput.focus()  
             });
         }
         else {
@@ -124,9 +126,11 @@ const NPSInput = React.createClass({
                         </p>
                         <NPSScale selectedValue={score} onSubmit={this.onSelectScore} />
                         {comment && score ? (
-                            <form onSubmit={this.onFormSubmit}>
-                                <input type="text" placeholder="Tell us a bit more" value={commentText || ''} onChange={this.onCommentUpdate} />
-                                <input type="submit" value="Submit" />
+                            <form onSubmit={this.onFormSubmit} className="NPSInput-Form">
+                                <input type="text" placeholder="Tell us a bit more (it's optional)"
+                                    ref={input => { this.commentInput = input; }}
+                                    value={commentText || ''} onChange={this.onCommentUpdate} />
+                                <button onClick={this.onFormSubmit}>Submit</button>
                             </form>
                         ) : null}
                     </div>
