@@ -10,6 +10,7 @@ const MAX = 10;
  */
 const NPSScale = React.createClass({
     propTypes: {
+        selectedValue: React.PropTypes.number,
         onSubmit: React.PropTypes.func.isRequired
     },
 
@@ -44,6 +45,7 @@ const NPSScale = React.createClass({
 
     render() {
         const { value } = this.state;
+        const { selectedValue } = this.props;
 
         return (
             <div className="NPSScale">
@@ -52,7 +54,7 @@ const NPSScale = React.createClass({
                         <div
                             key={i}
                             className={classNames('NPSScale-Value', {
-                                selected: value !== null && (value >= i)
+                                selected: (value !== null ? (value >= i) : (selectedValue !== null  && (selectedValue >= i)))
                             })}
                             onMouseEnter={() => this.onMouseEnter(i)}
                             onMouseLeave={() => this.onMouseLeave(i)}
