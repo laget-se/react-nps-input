@@ -1,8 +1,9 @@
-$NPSInput-Value-color:       #f2f5fd;
-$NPSInput-Value-hover-color: #3884ff;
-$NPSInput-Value-size:        32px;
-$NPSInput-Value-padding:     3px;
-$NPSInput-Value-width:       (($NPSInput-Value-size + 2*$NPSInput-Value-padding)*11);
+$NPSInput-Value-color:               #f2f5fd;
+$NPSInput-Value-hover-color:         #3884ff;
+$NPSInput-Value-button-hover-color:  #65a0ff;
+$NPSInput-Value-size:                32px;
+$NPSInput-Value-padding:             3px;
+$NPSInput-Value-width:               (($NPSInput-Value-size + 2*$NPSInput-Value-padding)*11);
 
 .NPSInput {
     position: fixed;
@@ -116,14 +117,26 @@ $NPSInput-Value-width:       (($NPSInput-Value-size + 2*$NPSInput-Value-padding)
         padding-top: 1em;
 
         input {
-            width: $NPSInput-Value-width - 100 - 11 - 16;
-            margin-right: 11px;
+            width: $NPSInput-Value-width - 100 - 16 - 16;
+            margin-right: 16px;
             padding: 8px;
+            font-size: 12px;
         }
       
         button {
             width: 100px;
             padding: 8px;
+            font-size: 14px;
+            background-color: $NPSInput-Value-hover-color;
+            color: #fff;
+            border-radius: 4px;
+            border: none;
+            transition: 0.15s ease all;
+            
+            &:hover {
+                transform: scale(1.12);
+                background-color: $NPSInput-Value-button-hover-color;
+            }
         }
     }
 }
