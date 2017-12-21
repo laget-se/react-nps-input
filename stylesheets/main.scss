@@ -1,0 +1,185 @@
+$NPSInput-Value-color:               #f2f5fd !default;
+$NPSInput-Value-hover-color:         #3884ff !default;
+$NPSInput-Value-button-hover-color:  #65a0ff !default;
+$NPSInput-Value-size:                32px;
+$NPSInput-Value-padding:             3px;
+
+.NPSInput {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    border-top: 1px solid #e5e5e5;
+    background: #fff;
+    box-shadow: 0px -10px 10px rgba(200, 200, 200, 0.08);
+    z-index: 555;
+
+    &.animated {
+        animation-duration: 2s;
+        animation-name: NPSInput-slidein;
+    }
+
+    .NPSInput-Close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        outline: none;
+        display: inline-block;
+        zoom: 1;
+        line-height: normal;
+        white-space: nowrap;
+        vertical-align: baseline;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        font-family: inherit;
+        font-size: 100%;
+        padding: 0.5em 1em;
+        text-decoration: none;
+        border: 0;
+        opacity: 0.4;
+        font-size: 16px;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .NPSInput-Inner {
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto;
+        text-align: center;
+    }
+
+    .NPSScale {
+        .NPSScale-Values {
+            .NPSScale-Value {
+                padding: 0px 3px;
+                display: inline-block;
+
+                div {
+                    background: $NPSInput-Value-color;
+                    width: $NPSInput-Value-size;
+                    height: $NPSInput-Value-size;
+                    line-height: $NPSInput-Value-size;
+                    border-radius: $NPSInput-Value-size;
+                    cursor: pointer;
+                    transition: 0.15s ease all;
+                    color: #999;
+                    
+                    @media screen and (max-width: 480px) {
+                        width: $NPSInput-Value-size / 1.2;
+                        height: $NPSInput-Value-size / 1.2;
+                        line-height: $NPSInput-Value-size / 1.2;
+                        border-radius: $NPSInput-Value-size / 1.2;
+                    }
+                    
+                    @media screen and (max-width: 320px) {
+                        font-size: 13px;
+                        width: $NPSInput-Value-size / 1.5;
+                        height: $NPSInput-Value-size / 1.5;
+                        line-height: $NPSInput-Value-size / 1.5;
+                        border-radius: $NPSInput-Value-size / 1.5;
+                    }
+                }
+
+                &.selected {
+                    div {
+                        background: $NPSInput-Value-hover-color;
+                        color: #fff;
+                    }
+                }
+
+                &:hover {
+                    div {
+                        transform: scale(1.25);
+                    }
+                }
+            }
+        }
+
+        .NPSScale-Legend {
+            display: flex;
+            margin-top: 12px;
+
+            .NPSScale-Label {
+                flex: 1;
+                color: #999;
+                font-size: 12px;
+
+                &.left {
+                    text-align: left;
+                }
+                &.right {
+                    text-align: right;
+                }
+            }
+        }
+    }
+
+    .NPSInput-Message {
+        margin: 0px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        padding: 0 48px;
+        
+        @media screen and (max-width: 320px) {
+            font-size: 12px;
+        }
+    }
+    
+    .NPSInput-Form {
+        padding: 1em 2% 0 2%;
+
+        input {
+            box-sizing: border-box;
+            width: 68%;
+            margin-right: 5%;
+            padding: 8px;
+            font-size: 12px;
+        }
+      
+        button {
+            box-sizing: border-box;
+            width: 23%;
+            padding: 8px;
+            font-size: 14px;
+            background-color: $NPSInput-Value-hover-color;
+            color: #fff;
+            border-radius: 4px;
+            border: none;
+            transition: 0.15s ease all;
+            
+            &:hover {
+                transform: scale(1.12);
+                background-color: $NPSInput-Value-button-hover-color;
+            }
+        }
+    }
+    
+    .NPSScale,
+    .NPSInput-Form {
+        width: (($NPSInput-Value-size + 2*$NPSInput-Value-padding)*11);;
+        margin: 0px auto;
+        
+        @media screen and (max-width: 480px) {
+            width: (($NPSInput-Value-size / 1.2 + 2*$NPSInput-Value-padding)*11);;
+        }
+        
+        @media screen and (max-width: 320px) {
+            width: (($NPSInput-Value-size / 1.5 + 2*$NPSInput-Value-padding)*11);;
+        }
+    }
+}
+
+@keyframes NPSInput-slidein {
+  from {
+    bottom: -100%;
+  }
+
+  to {
+    bottom: 0px;
+  }
+}

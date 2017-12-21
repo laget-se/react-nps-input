@@ -1,14 +1,19 @@
 # react-nps-input
 
-[![Build Status](https://travis-ci.org/SamyPesse/react-nps-input.svg?branch=master)](https://travis-ci.org/SamyPesse/react-nps-input)
-[![NPM version](https://badge.fury.io/js/react-nps-input.svg)](http://badge.fury.io/js/react-nps-input)
+A lightweight React component for gathering Net Promoter Score surveys. [See demo](http://eugenijusr.github.io/react-nps-input/).
 
-A lightweight React component for gathering Net Promoter Score surveys. [See demo](http://samypesse.github.io/react-nps-input/).
+### Fork Extras
+
+This fork has been extended with:
+
+- an optional comment field
+- UI fixes for smaller screens on mobile devices
+- SASS instead of LESS
 
 ### Installation
 
 ```
-$ npm install react-nps-input --save
+$ npm install https://github.com/eugenijusr/react-nps-input --save
 ```
 
 ### Usage
@@ -25,7 +30,7 @@ const MyApp = React.createClass({
     render() {
         return (
             <div>
-                <NPSInput onSubmit={this.onSubmit}>{({ score }) => {
+                <NPSInput onSubmit={this.onSubmit}>{({ score, commentText }) => {
                     if (score >= 9) {
                         return <p>Awesome thank you!</p>;
                     } else {
@@ -44,3 +49,4 @@ const MyApp = React.createClass({
 - `[Function] onDismissed`: function to call when the user clicked to dismiss the form
 - `[String] service` (Optional): name of the service for the introduction message
 - `[Boolean] animated` (Optional): show animation for apparition (default is `true`)
+- `[Boolean] comment` (Optional): the ability to submit an optional comment together with the score

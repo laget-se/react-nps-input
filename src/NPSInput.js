@@ -9,6 +9,7 @@ const NPSScale = require('./NPSScale');
 const NPSInput = React.createClass({
     propTypes: {
         animated:    React.PropTypes.bool,
+        comment:     React.PropTypes.bool,
         service:     React.PropTypes.string,
         onSubmit:    React.PropTypes.func.isRequired,
         onDismissed: React.PropTypes.func.isRequired,
@@ -18,6 +19,7 @@ const NPSInput = React.createClass({
     getDefaultProps() {
         return {
             animated:    true,
+            comment:     false,
             onSubmit:    () => {},
             onDismissed: () => {},
             children:    () => 'Thank you for your feedback!'
@@ -26,21 +28,46 @@ const NPSInput = React.createClass({
 
     getInitialState() {
         return {
+            submitted: false,
             dismissed: false,
-            score: null
+            score: null,
+            commentText: null
         };
     },
 
     /**
      * User clicked on a value.
      */
-    onSubmit(score) {
-        const { onSubmit } = this.props;
+    onSelectScore(score) {
+        const { comment } = this.props;
+        if (comment) {
+            this.setState({
+                score
+            }, () => {
+                this.commentInput.focus();
+            });
+        }
+        else {
+            this.submit(score, null);
+        }
+    },
+
+    /**
+     * User updated comment text.
+     */
+    onCommentUpdate(event) {
         this.setState({
-            score
-        }, () => {
-            onSubmit({ score });
+            commentText: event.target.value
         });
+    },
+
+    /**
+     * User submitted a form.
+     */
+    onFormSubmit(event) {
+        const { score, commentText } = this.state;
+        this.submit(score, commentText);
+        event.preventDefault();
     },
 
     /**
@@ -48,18 +75,29 @@ const NPSInput = React.createClass({
      */
     onDismiss() {
         const { onDismissed } = this.props;
-        const { score } = this.state;
+        const { score, commentText } = this.state;
 
         this.setState({
             dismissed: true
         }, () => {
-            onDismissed({ score });
+            onDismissed({ score, commentText });
+        });
+    },
+
+    submit(score, commentText) {
+        const { onSubmit } = this.props;
+        this.setState({
+            score,
+            commentText,
+            submitted: true
+        }, () => {
+            onSubmit({ score, commentText });
         });
     },
 
     render() {
-        const { animated, service, children } = this.props;
-        const { dismissed, score } = this.state;
+        const { animated, comment, service, children } = this.props;
+        const { submitted, dismissed, score, commentText } = this.state;
 
         const message = service ?
             `How likely are you to recommend ${service} to your friends and colleagues?`
@@ -73,10 +111,11 @@ const NPSInput = React.createClass({
             <div className={classNames('NPSInput', { animated })}>
                 <button className="NPSInput-Close" onClick={this.onDismiss}>✕</button>
 
-                {score ? (
+                {submitted ? (
                     <div className="NPSInput-Inner">
                         {children({
                             score,
+                            commentText,
                             dismiss: this.onDismiss
                         })}
                     </div>
@@ -85,10 +124,17 @@ const NPSInput = React.createClass({
                         <p className="NPSInput-Message">
                             {message}
                         </p>
-                        <NPSScale onSubmit={this.onSubmit} />
+                        <NPSScale selectedValue={score} onSubmit={this.onSelectScore} />
+                        {comment && score ? (
+                            <form onSubmit={this.onFormSubmit} className="NPSInput-Form">
+                                <input type="text" placeholder="Tell us a bit more (it's optional)"
+                                    ref={(input) => { this.commentInput = input; }}
+                                    value={commentText || ''} onChange={this.onCommentUpdate} maxLength={255} />
+                                <button onClick={this.onFormSubmit}>Submit</button>
+                            </form>
+                        ) : null}
                     </div>
                 )}
-
             </div>
         );
     }
