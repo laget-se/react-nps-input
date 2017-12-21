@@ -6,96 +6,127 @@
   border-top: 1px solid #e5e5e5;
   background: #fff;
   box-shadow: 0px -10px 10px rgba(200, 200, 200, 0.08);
-}
-.NPSInput.animated {
-  animation-duration: 2s;
-  animation-name: NPSInput-slidein;
-}
-.NPSInput .NPSInput-Close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  outline: none;
-  display: inline-block;
-  zoom: 1;
-  line-height: normal;
-  white-space: nowrap;
-  vertical-align: baseline;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  font-family: inherit;
-  font-size: 100%;
-  padding: 0.5em 1em;
-  text-decoration: none;
-  border: 0;
-  opacity: 0.4;
-  font-size: 16px;
-}
-.NPSInput .NPSInput-Close:hover {
-  opacity: 1;
-}
-.NPSInput .NPSInput-Inner {
-  width: 100%;
-  max-width: 1000px;
-  margin: 20px auto;
-  text-align: center;
-}
-.NPSInput .NPSScale {
-  width: 418px;
-  margin: 0px auto;
-}
-.NPSInput .NPSScale .NPSScale-Values .NPSScale-Value {
-  padding: 0px 3px;
-  display: inline-block;
-}
-.NPSInput .NPSScale .NPSScale-Values .NPSScale-Value div {
-  background: #f2f5fd;
-  width: 32px;
-  height: 32px;
-  line-height: 32px;
-  border-radius: 32px;
-  cursor: pointer;
-  transition: 0.15s ease all;
-  color: #999;
-}
-.NPSInput .NPSScale .NPSScale-Values .NPSScale-Value.selected div {
-  background: #3884ff;
-  color: #fff;
-}
-.NPSInput .NPSScale .NPSScale-Values .NPSScale-Value:hover div {
-  transform: scale(1.25);
-}
-.NPSInput .NPSScale .NPSScale-Legend {
-  display: flex;
-  margin-top: 12px;
-}
-.NPSInput .NPSScale .NPSScale-Legend .NPSScale-Label {
-  flex: 1;
-  color: #999;
-  font-size: 12px;
-}
-.NPSInput .NPSScale .NPSScale-Legend .NPSScale-Label.left {
-  text-align: left;
-}
-.NPSInput .NPSScale .NPSScale-Legend .NPSScale-Label.right {
-  text-align: right;
-}
-.NPSInput .NPSInput-Message {
-  margin: 0px;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
+  z-index: 555; }
+  .NPSInput.animated {
+    animation-duration: 2s;
+    animation-name: NPSInput-slidein; }
+  .NPSInput .NPSInput-Close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    outline: none;
+    display: inline-block;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: inherit;
+    font-size: 100%;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border: 0;
+    opacity: 0.4;
+    font-size: 16px; }
+    .NPSInput .NPSInput-Close:hover {
+      opacity: 1; }
+  .NPSInput .NPSInput-Inner {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    text-align: center; }
+  .NPSInput .NPSScale .NPSScale-Values .NPSScale-Value {
+    padding: 0px 3px;
+    display: inline-block; }
+    .NPSInput .NPSScale .NPSScale-Values .NPSScale-Value div {
+      background: #f2f5fd;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 32px;
+      cursor: pointer;
+      transition: 0.15s ease all;
+      color: #999; }
+      @media screen and (max-width: 480px) {
+        .NPSInput .NPSScale .NPSScale-Values .NPSScale-Value div {
+          width: 26.66667px;
+          height: 26.66667px;
+          line-height: 26.66667px;
+          border-radius: 26.66667px; } }
+      @media screen and (max-width: 320px) {
+        .NPSInput .NPSScale .NPSScale-Values .NPSScale-Value div {
+          font-size: 13px;
+          width: 21.33333px;
+          height: 21.33333px;
+          line-height: 21.33333px;
+          border-radius: 21.33333px; } }
+    .NPSInput .NPSScale .NPSScale-Values .NPSScale-Value.selected div {
+      background: #3884ff;
+      color: #fff; }
+    .NPSInput .NPSScale .NPSScale-Values .NPSScale-Value:hover div {
+      transform: scale(1.25); }
+  .NPSInput .NPSScale .NPSScale-Legend {
+    display: flex;
+    margin-top: 12px; }
+    .NPSInput .NPSScale .NPSScale-Legend .NPSScale-Label {
+      flex: 1;
+      color: #999;
+      font-size: 12px; }
+      .NPSInput .NPSScale .NPSScale-Legend .NPSScale-Label.left {
+        text-align: left; }
+      .NPSInput .NPSScale .NPSScale-Legend .NPSScale-Label.right {
+        text-align: right; }
+  .NPSInput .NPSInput-Message {
+    margin: 0px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    padding: 0 48px; }
+    @media screen and (max-width: 320px) {
+      .NPSInput .NPSInput-Message {
+        font-size: 12px; } }
+  .NPSInput .NPSInput-Form {
+    padding: 1em 2% 0 2%; }
+    .NPSInput .NPSInput-Form input {
+      box-sizing: border-box;
+      width: 68%;
+      margin-right: 5%;
+      padding: 8px;
+      font-size: 12px; }
+    .NPSInput .NPSInput-Form button {
+      box-sizing: border-box;
+      width: 23%;
+      padding: 8px;
+      font-size: 14px;
+      background-color: #3884ff;
+      color: #fff;
+      border-radius: 4px;
+      border: none;
+      transition: 0.15s ease all; }
+      .NPSInput .NPSInput-Form button:hover {
+        transform: scale(1.12);
+        background-color: #65a0ff; }
+  .NPSInput .NPSScale,
+  .NPSInput .NPSInput-Form {
+    width: 418px;
+    margin: 0px auto; }
+    @media screen and (max-width: 480px) {
+      .NPSInput .NPSScale,
+      .NPSInput .NPSInput-Form {
+        width: 359.33333px; } }
+    @media screen and (max-width: 320px) {
+      .NPSInput .NPSScale,
+      .NPSInput .NPSInput-Form {
+        width: 300.66667px; } }
+
 @keyframes NPSInput-slidein {
   from {
-    bottom: -100%;
-  }
+    bottom: -100%; }
   to {
-    bottom: 0px;
-  }
-}
+    bottom: 0px; } }
+
 body {
   font-size: 14px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
