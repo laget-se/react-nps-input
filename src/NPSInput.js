@@ -43,8 +43,6 @@ const NPSInput = React.createClass({
         if (comment) {
             this.setState({
                 score
-            }, () => {
-                this.commentInput.focus();
             });
         }
         else {
@@ -128,8 +126,7 @@ const NPSInput = React.createClass({
                         {comment && score ? (
                             <form onSubmit={this.onFormSubmit} className="NPSInput-Form">
                                 <input type="text" placeholder="Tell us a bit more (it's optional)"
-                                    ref={(input) => { this.commentInput = input; }}
-                                    value={commentText || ''} onChange={this.onCommentUpdate} maxLength={255} />
+                                    value={commentText || ''} onChange={this.onCommentUpdate} maxLength={255} autoFocus />
                                 <button onClick={this.onFormSubmit}>Submit</button>
                             </form>
                         ) : null}
