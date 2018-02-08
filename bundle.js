@@ -20982,15 +20982,11 @@ var NPSInput = React.createClass({
      * User clicked on a value.
      */
     onSelectScore: function onSelectScore(score) {
-        var _this = this;
-
         var comment = this.props.comment;
 
         if (comment) {
             this.setState({
                 score: score
-            }, function () {
-                _this.commentInput.focus();
             });
         } else {
             this.submit(score, null);
@@ -21049,8 +21045,6 @@ var NPSInput = React.createClass({
         });
     },
     render: function render() {
-        var _this2 = this;
-
         var _props = this.props,
             animated = _props.animated,
             comment = _props.comment,
@@ -21098,10 +21092,7 @@ var NPSInput = React.createClass({
                     'form',
                     { onSubmit: this.onFormSubmit, className: 'NPSInput-Form' },
                     React.createElement('input', { type: 'text', placeholder: 'Tell us a bit more (it\'s optional)',
-                        ref: function ref(input) {
-                            _this2.commentInput = input;
-                        },
-                        value: commentText || '', onChange: this.onCommentUpdate, maxLength: 255 }),
+                        value: commentText || '', onChange: this.onCommentUpdate, maxLength: 255, autoFocus: true }),
                     React.createElement(
                         'button',
                         { onClick: this.onFormSubmit },
