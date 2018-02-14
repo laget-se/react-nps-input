@@ -13,7 +13,7 @@ This fork has been extended with:
 ### Installation
 
 ```
-$ npm install https://github.com/eugenijusr/react-nps-input --save
+$ npm i https://github.com/laget-se/react-nps-input
 ```
 
 ### Usage
