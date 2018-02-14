@@ -66,10 +66,10 @@ const NPSScale = React.createClass({
                 </div>
                 <div className="NPSScale-Legend">
                     <div className="NPSScale-Label left">
-                        Not at all likely
+                        Inte alls troligt
                     </div>
                     <div className="NPSScale-Label right">
-                        Extremely likely
+                        Väldigt troligt
                     </div>
                 </div>
             </div>
