@@ -97,7 +97,7 @@ const NPSInput = React.createClass({
         const { animated, comment, service, children } = this.props;
         const { submitted, dismissed, score, commentText } = this.state;
 
-        const message = 'Hur troligt är det att du skulle rekommendera (produkten) till en kollega eller vän?';
+        const message = 'Hur troligt är det att du skulle rekommendera laget.se till en kollega eller vän?';
 
         if (dismissed) {
             return null;
