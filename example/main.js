@@ -1,9 +1,10 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const createReactClass = require('create-react-class');
 
 const NPSInput = require('../src');
 
-const Example = React.createClass({
+const Example = createReactClass({
     onSubmit({ score, commentText }) {
         alert('Submitted ' + score + (commentText ? ' and comment "' + commentText + '"' : 'and no comment'));
     },
